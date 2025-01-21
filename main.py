@@ -16,6 +16,8 @@ class Movie():
         '''Remove showtime from the table, format: HH:MM'''
         if time in self.showtimes:
             self.showtimes.remove(time)
+        else:
+            print("BŁĄD: Nie znaleziono takiej godziny na usunięcie seansu")
 
     def display_details(self, prefix: str = ""):
         '''Displays title, formatted length and all showtime hours, optional prefix argument'''
