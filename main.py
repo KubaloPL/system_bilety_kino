@@ -1,9 +1,9 @@
 import time
 
-class Movie():
 
-    def __init__(self, title:str, duration:int, showtimes:list):
-        '''Movie class, duration in seconds, showtimes is a list of strings'''
+class Movie():
+    '''Movie class, duration in seconds, showtime format HH:MM'''
+    def __init__(self, title:str, duration:int, showtimes:list[str]):
         self.title = title
         self.duration = duration
         self.showtimes = showtimes
@@ -18,6 +18,7 @@ class Movie():
             self.showtimes.remove(time)
 
     def display_details(self, prefix: str = ""):
+        '''Displays title, formatted length and all showtime hours, optional prefix argument'''
         print(f"{prefix}Tytuł filmu: {self.title}")
         print(f"{prefix}Długość filmu: {time.strftime('%H:%M:%S', time.gmtime(self.duration))}")
         totaltimes = ""
@@ -28,49 +29,62 @@ class Movie():
 
 
 class Customer:
+    '''Customer class, first and last name as strings'''
     def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name
         self.last_name = last_name
         self.reservations: list = []
 
     def add_reservation(self, movie:Movie, time:str):
+        '''Adds reservation to a movie at a specific time'''
         if time in movie.showtimes:
             self.reservations.append([movie.title, time])
+        else:
+            print("BŁĄD: Nie znaleziono takiej godziny na rezerwacje seansu")
 
     def display_reservations(self):
+        '''Displays all reservations of a customer'''
         print(f"Rezerwacje dla: {self.first_name} {self.last_name}:")
         for reservation in self.reservations:
             print(f"    - Seans '{reservation[0]}' o godzinie {reservation[1]}")
 
 class VIPCustomer(Customer):
+    '''VIP Customer class, inherited from Customer'''
     def __init__(self, first_name, last_name):
         self.private_reservations: list = []
         super().__init__(first_name, last_name)
 
     def get_discounted_price(self, price:int):
+        '''VIP customers get a discount on ticket prices, this function handles the formula'''
         return price * 0.8
     
     def book_private_show(self, movie: Movie, time: str):
+        '''Books an entire movie reserved entirely to the VIP customer at any time'''
         self.private_reservations.append([movie.title, time])
     
     def display_private_reservations(self):
+        '''Displays all private reservations of a VIP customer'''
         print(f"Prywatne rezerwacje dla VIP'a: {self.first_name} {self.last_name}:")
         for reservation in self.private_reservations:
             print(f"    - Seans '{reservation[0]}' o godzinie {reservation[1]}")
 
 
 class Cinema:
+    '''Cinema class for storing all movies and customers of a specific cinema'''
     def __init__(self):
         self.movies: list[Movie] = []
         self.customers: list[Customer] = []
 
     def add_movie(self, movie: Movie):
+        '''Adds a movie to a cinema'''
         self.movies.append(movie)
     
     def add_customer(self, customer: Customer):
+        '''Adds a customer to a cinema'''
         self.customers.append(customer)
 
     def display_movies(self):
+        '''Displays all movies' details within a cinema'''
         print("Wszystkie filmy:")
         for movie in self.movies:
             movie.display_details(prefix="    - ")
@@ -96,7 +110,6 @@ def main():
     VIPcustomer1.display_private_reservations()
 
     cinema.display_movies()
-
 
 if __name__ == "__main__":
     main()
