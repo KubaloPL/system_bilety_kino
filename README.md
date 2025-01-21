@@ -1,5 +1,6 @@
 # system_bilety_kino
 
+
 Zadanie:  **System rezerwacji biletów do kina**  
 Celem zadania jest stworzenie systemu rezerwacji biletów do kina. Program powinien umożliwiać zarządzanie filmami, rezerwacjami oraz klientami z wykorzystaniem klas i dziedziczenia. W zadaniu należy zaimplementować co najmniej dwie klasy główne oraz klasę dziedziczącą, która rozszerza funkcjonalność jednej z głównych klas.Wymagania:  
 
