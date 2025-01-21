@@ -86,9 +86,10 @@ class Cinema:
     def display_movies(self):
         '''Displays all movies' details within a cinema'''
         print("Wszystkie filmy:")
-        for movie in self.movies:
+        for i,movie in enumerate(self.movies):
             movie.display_details(prefix="    - ")
-            print("")
+            if i < len(self.movies) -1:
+                print("")
 
 def main():
     cinema = Cinema()
