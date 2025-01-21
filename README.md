@@ -66,7 +66,10 @@ Przykład działania:
 4.  Program wyświetla szczegóły wszystkich rezerwacji klientów oraz filmy w repertuarze.
 
 
-```
+
+# przykładowy kod do innej pracy (IGNORE)
+
+```py
 import os
 import datetime
 
